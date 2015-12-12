@@ -2,7 +2,7 @@
 FROM resin/rpi-raspbian:jessie
 
 # Bring in our compiled package
-COPY nginx_1.9.9-1~jessie_armhf.deb /tmp/
+COPY build/nginx_1.9.9-1~jessie_armhf.deb /tmp/
 
 # Install nginx from registry and replace it with newer version
 RUN \
