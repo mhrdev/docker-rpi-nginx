@@ -10,12 +10,14 @@ ENV NGINX_VERSION_FOLDER 1.9.9
 
 WORKDIR /root/build
 
-# Install Nginx.
+# Build Nginx.
 RUN \
  apt-get update && \
  apt-get -y build-dep nginx && \
  apt-get source nginx=${NGINX_VERSION} && \
  cd nginx-${NGINX_VERSION_FOLDER} && \
+ DEB_CFLAGS_APPEND=" -fPIE -pie" \
+ DEB_CXXFLAGS_APPEND=" -fPIE -pie" \
  dpkg-buildpackage -uc -b && \
  cd .. && \
  rm nginx-${NGINX_VERSION_FOLDER} -fR
